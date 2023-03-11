@@ -27,5 +27,5 @@ public class DetallesUsuarioServicio implements UserDetailsService {
         
         return new DetallesUsuario(user);
     }
-    
+    //Funciona
 }
