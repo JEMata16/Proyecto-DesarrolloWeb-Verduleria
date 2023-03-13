@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Empleado</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        <h2>Editar empleado</h2>
+        <br>
+        <hr>
+        <form th:action="@{/empleado/guardar}"
+              method="post"
+              th:object="${empleado}">
+            <input type="hidden" 
+                   name="idEmpleado" 
+                   th:field="*{idEmpleado}"/>
+            <label>Nombre</label>
+            <input type="text" 
+                   name="nombre" 
+                   value="" 
+                   th:field="*{nombre}"
+                   size="30" />
+            <br>
+            <label>Apellidos</label>
+            <input type="text" 
+                   name="apellidos" 
+                   value="" 
+                   th:field="*{apellidos}"
+                   size="40" />
+            <br>
+            <label>Contacto</label>
+            <input type="tel" 
+                   name="contacto" 
+                   value="" 
+                   th:field="*{contacto}"
+                   size="15" />
+            <br>
+            <label>Telefono</label>
+            <input type="number" 
+                   name="salario" 
+                   value="" 
+                   th:field="*{salario}"
+                   size="15" />
+            <br>
+            <a th:href="@{/empleado/guardar/}"
+                           class="btn btn-success">Finalizar edición</a>
+        </form>  
+    </body>
+</html>

@@ -1,0 +1,13 @@
+/* El estilo para el menú situado a un lado de la página */
+.aside{
+    background-color: #F2F2F2;
+    position: fixed;
+    top: 82px;
+    left: 0;
+    bottom: 0;
+    width: 20%;
+}
+
+.titulo{
+    color: #5E8C5D;
+}
