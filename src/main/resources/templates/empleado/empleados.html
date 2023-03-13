@@ -7,7 +7,15 @@
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        <h2>Lista de Empleados</h2>
+        <aside class='aside'>
+            <ul>
+                <li class='menu seleccionado' 
+                    href="/empleado/empleados">Empleados</a></li>
+                <li class='menu'>Productos</a></li>
+                <li class='menu'>Cajas</a></li>
+            </ul>
+        </aside>
+        <h2 class='subtitulo'>Lista de Empleados</h2>
         <br>
         <hr>
         <div th:if="${empleados != null and !empleados.empty}">

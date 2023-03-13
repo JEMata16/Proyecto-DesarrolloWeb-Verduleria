@@ -1,4 +1,4 @@
-/* El estilo para el menú situado a un lado de la página */
+/* Estos estilos son para el menú situado a un lado de la página */
 .aside{
     background-color: #F2F2F2;
     position: fixed;
@@ -8,6 +8,20 @@
     width: 20%;
 }
 
+.menu{
+    color: #1C4002;
+    padding: 8px 12px;
+    justify-content: space-between;
+    font-size: 25px;
+    list-style: none;
+}
+
+/* Estilos para el cuerpo de la página */
 .titulo{
     color: #5E8C5D;
 }
+
+.subtitulo {
+    color: #1C4002;
+}
+

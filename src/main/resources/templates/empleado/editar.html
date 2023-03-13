@@ -7,7 +7,12 @@
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        <h2>Editar empleado</h2>
+        <aside class='aside'>
+            <ul>
+                <li class='menu seleccionado'>Empleados</a></li>
+            </ul>
+        </aside>
+        <h2 class='subtitulo'>Editar empleado</h2>
         <br>
         <hr>
         <form th:action="@{/empleado/guardar}"
@@ -45,7 +50,8 @@
                    size="15" />
             <br>
             <a th:href="@{/empleado/guardar/}"
-                           class="btn btn-success">Finalizar edición</a>
+                class="btn btn-success">Finalizar edición</a>
+            <a class="btn btn-secondary">Cancelar edición</a>
         </form>  
     </body>
 </html>
