@@ -20,10 +20,10 @@ public class LoginController {
         return "login";
     }
     
-    @GetMapping("/registro")
+    @GetMapping("/register")
     public String showRegister(Model model){
         model.addAttribute("usuario",new User());
-        return "registro";
+        return "register";
     }
     
     @PostMapping("/procesar-registro")
