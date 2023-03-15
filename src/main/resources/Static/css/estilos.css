@@ -58,6 +58,7 @@ input[type="text"] {
     text-align: right;
     margin-right: 20px;
     margin-top: 30px;
+    color: #1C4002;
 }
 #login p {
     color: white;
@@ -88,9 +89,11 @@ input[type="text"] {
 }
 .label-password {
     margin-right: 170px;
+    color: #1C4002;
 }
 .label-user {
     margin-right: 107px;
+    color: #1C4002;
 }
 .btn-circular {
     width: 100px;
