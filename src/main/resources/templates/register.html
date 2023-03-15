@@ -5,25 +5,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 -->
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Inicio de sesión</title>
+        <title>Registro</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link th:href="@{css/estilos.css}" rel="stylesheet" type="text/css"/>
 
     </head>
     <body>
-            <div id="login">
-                <h2>Inicio de sesión</h2>
-                <form>
+            <div id="register">
+                <p class="register-return-log">¿Tienes una cuenta? <a th:href="@{/}">Iniciar sesión</a></p>
+                <h2>Crear sesión</h2>
+                <form th:action="@{/procesar-registro}" th:object="${User}" methos="post">
                     <p class="label-user">Nombre de usuario</p>
                     <input type="email" placeholder="Email"><br>
                     <p class="label-password">Contraseña</p>
                     <input type="password" placeholder="Contraseña"><br>
-                    <input class="submit-btn" type="submit" value="Ingresar"><br>
-                    <a class="register-btn" th:href="@{/register}">Registrarse</a>
+                    <input class="submit-btn" type="submit" value="Crear cuenta">
                 </form>
             </div>
-            
-       
     </body>
 </html>
