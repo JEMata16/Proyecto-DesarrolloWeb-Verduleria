@@ -1,4 +1,3 @@
-
 package com.Verduleria.service.impl;
 
 import com.Verduleria.Domain.User;
@@ -12,11 +11,17 @@ public class UserServiceImpl implements UserService{
     
     @Autowired
     private UserDao userDataBase;
+    
 
     @Override
-    public User encontrarPorEmail(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void addUser(User user) {
+        user.setCargo("USER");
+        userDataBase.save(user);
     }
 
-    
+    @Override
+    public User findByUsername(String username) {
+        return userDataBase.findByUsername(username);
+    }
+
 }

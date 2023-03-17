@@ -10,36 +10,25 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="Empleado")
+@Table(name="Usuarios")
 public class User {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     
-    private String email;
+    private String username;
     private String pass;
-    private String nombre;
-    private String apellido;
-    private String contacto;
-    private int salario;
-    private char cargo; //A = Administrador / E = Empleado
+    private String cargo;
 
     public User() {
     }
 
-    public User(Long id, String email, String pass, String nombre, String apellido, String contacto, int salario, char cargo) {
+    public User(Long id, String username, String pass, String cargo) {
         this.id = id;
-        this.email = email;
+        this.username = username;
         this.pass = pass;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.contacto = contacto;
-        this.salario = salario;
         this.cargo = cargo;
     }
-
-    
-    
-    
+ 
 }

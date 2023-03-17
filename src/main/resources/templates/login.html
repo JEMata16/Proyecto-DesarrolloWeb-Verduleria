@@ -6,17 +6,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link th:href="@{css/estilos.css}" rel="stylesheet" type="text/css"/>
-
+        
     </head>
     <body>
+        <div th:if="${param.error}">Usuario o/y contraseña invalida</div>
             <div id="login">
                 <h2>Inicio de sesión</h2>
-                <form>
+                <form th:action="@{/}" method="post" role="form"> 
                     <p class="label-user">Nombre de usuario</p>
-                    <input type="email" placeholder="Email"><br>
+                    <input type="text" placeholder="Username" id="username" name="username"><br>
                     <p class="label-password">Contraseña</p>
-                    <input type="password" placeholder="Contraseña"><br>
-                    <input class="submit-btn" type="submit" value="Ingresar" th:href="@{/inicio}"><br>
+                    <input type="password" placeholder="Contraseña" id="pass" name="password"><br>
+                    <input class="submit-btn" type="submit" value="Log in" th:href="@{/}"><br>
                     <a class="register-btn" th:href="@{/register}">Registrarse</a>
                 </form>
             </div>
