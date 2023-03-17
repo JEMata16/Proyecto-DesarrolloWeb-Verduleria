@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -16,7 +17,7 @@ public class EmpleadoController {
     private EmpleadoService empleadoService;
     
    @GetMapping("/empleados")
-    public String inicio(Model model){
+    public String inicial(Model model){
         var empleados=empleadoService.getEmpleados();
         model.addAttribute("empleados", empleados);
         return "/empleado/empleados";
@@ -29,12 +30,12 @@ public class EmpleadoController {
     
     @GetMapping("/nuevo")
     public String nuevo(Empleado empleado){
-        return "/empleado/editar";
+        return "/empleado/agregar";
     }
     // Si el metodo del text imput es post, se debe usar post mapping
     @PostMapping("/guardar")
-    public String guardar(Empleado empleado){
-        empleadoService.saveEmpleado(empleado);
+    public String guardar(@ModelAttribute("empleado")Empleado empleadoObject){
+        empleadoService.saveEmpleado(empleadoObject);
         return "redirect:/empleado/empleados";
     }
     

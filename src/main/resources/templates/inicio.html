@@ -3,21 +3,20 @@
 <html>
     <html xmlns:th="http://www.thymeleaf.org">
         <head th:replace="~{layout/plantilla :: head}">
-            <title>Verdulería</title>
-            <meta charset="UTF-8">
-        </head>
+        <title>Empleados</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
         <header th:replace="~{layout/plantilla :: header}"/>
         <aside class="aside">
             <ul>
-                <li class="menu"
-                    th:href="/empleado/empleados">Empleados</a></li>
-                <li class="menu">Productos</a></li>
-                <li class="menu">Cajas</a></li>
+                <li class="menu"><a class="menu-link" th:href="@{empleado/empleados}"><i class="fas fa-users"></i>Empleados</a></li>
+                <li class="menu"><a class="menu-link"><i class="fas fa-shopping-cart"></i>Productos</a></li>
+                <li class="menu"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
             </ul>
         </aside>
-
-        <section class="contenido">
-            <h2 class="titulo"> ¡Bienvenido!</h2>
+        <section class="contenido texto-inicio">
+            <h2 class="titulo"> ¡Bienvenido!</h2><br>
             <article>
                 <p>
                     Agradecemos su trabajo con nuestra tienda, en la sección a su izquierda podrá encontrar distintas opciones para administrar.

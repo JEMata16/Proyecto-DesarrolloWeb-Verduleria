@@ -87,21 +87,30 @@ input[type="text"] {
     text-align: center;
     margin: auto;
 }
+
 .label-password {
     margin-right: 170px;
     color: #1C4002;
 }
+
 .label-user {
     margin-right: 107px;
     color: #1C4002;
 }
+
 .btn-circular {
-    width: 100px;
-    height: 100px;
-    padding: 13px 18px;
+    width: 40px;
+    height: 40px;
+    padding-top: 8px;
     border-radius: 60px;
+    background-color: #5E8C5D;
 }
-.submit-btn{
+
+.btn-form {
+    background-color: #5E8C5D;
+}
+
+.submit-btn {
     border:none;
     border-radius: 3px;
     color: white;
@@ -110,12 +119,21 @@ input[type="text"] {
     margin-top: 10px;
     padding: 15px 50px;
 }
+
 #login {
     text-align: center;
     height: 100%;
 }
 
+.navbar-custom {
+    background-color: #5E8C5D;
+    min-height: 83px;
+    
+}
 
+.label-edit {
+    color: #5E8C5D;
+}
 /* Estos estilos son para el menú situado a un lado de la página */
 .aside{
     background-color: #F2F2F2;
@@ -126,12 +144,37 @@ input[type="text"] {
     width: 20%;
 }
 
+.menu-arriba {
+    padding-left: 83px;
+}
+
+.menu-link{
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #1C4002;
+    text-decoration: none;
+    width: 20%;
+}
+
+.menu-link:hover{
+    padding: 8px 12px;
+    border-radius: 8px;
+    background-color: #83A582;
+    transition: 0.5s;
+    color: #f2f2f2;
+}
+
 .menu{
     color: #1C4002;
     padding: 8px 12px;
     justify-content: space-between;
-    font-size: 25px;
+    font-size: 20px;
     list-style: none;
+}
+
+.seleccionado{
+    color: #F2F2F2;
+    background-color: #83A582;
 }
 
 /* Estilos para el cuerpo de la página */
@@ -141,4 +184,19 @@ input[type="text"] {
 
 .subtitulo {
     color: #1C4002;
+}
+
+.contenido{
+    background-color: white;
+    position: fixed;
+    top: 82px;
+    left: 20%;
+    right: 0;
+    bottom: 0;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.texto-inicio {
+    padding-top: 90px;
 }
