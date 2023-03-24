@@ -2,60 +2,12 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>Empleados</title>
+        <title>Verduleria</title>
         <meta charset="UTF-8">
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        <aside class="aside">
-            <ul>
-                <li class="menu seleccionado"><a class="menu-link">Empleados</a></li>
-            </ul>
-        </aside>
-        <section class="contenido">
-            <article>
-                <h2 class="subtitulo">Editar empleado</h2>
-                <br>
-                <hr>
-                <form th:action="@{/empleado/guardar}"
-                      method="post"
-                      th:object="${empleado}">
-                    <input type="hidden" 
-                           name="idEmpleado" 
-                           th:field="*{idEmpleado}"/>
-                    <label class="label-edit">Nombre</label><br>
-                    <input type="text" 
-                           name="nombre" 
-                           value="" 
-                           th:field="*{nombre}"
-                           size="30" />
-                    <br>
-                    <label class="label-edit">Apellidos</label><br>
-                    <input type="text" 
-                           name="apellidos" 
-                           value="" 
-                           th:field="*{apellidos}"
-                           size="40" />
-                    <br>
-                    <label class="label-edit">Contacto</label><br>
-                    <input type="tel" 
-                           name="contacto" 
-                           value="" 
-                           th:field="*{contacto}"
-                           size="15" />
-                    <br>
-                    <label class="label-edit">Salario</label><br>
-                    <input type="number" 
-                           name="salario" 
-                           value="" 
-                           th:field="*{salario}"
-                           size="15" />
-                    <br>
-                    <input type="submit" value="Finalizar edición"/>
-                    <a class="btn btn-secondary">Cancelar edición</a>
-                </form>  
-            </article>
-            <hr>
+        <section th:replace="~{empleado/secciones :: editarEmpleado}">
         </section>
     </body>
 </html>
