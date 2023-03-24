@@ -7,13 +7,7 @@
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
-        <div class="aside">
-            <aside>
-                <ul>
-                    <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
-                </ul>
-            </aside>
-        </div>
+        <section th:replace="~{empleado/secciones :: menuEdiciones}"/>
         <section th:replace="~{empleado/secciones :: agregarEmpleado}"/>
     </body>
 </html>

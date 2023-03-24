@@ -37,12 +37,17 @@
                     </ul>
                 </div>
             </nav>
-            <aside class="py-2">
-                <div class="container">
-                    <div class="aside">
-                    </div>
-                </div>
-            </aside>
         </header>
+        <section th:fragment="menuInicio">
+            <div class="aside">
+                <aside>
+                    <ul>
+                        <li class="menu"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
+                        <li class="menu"><a class="menu-link"><i class="fas fa-shopping-cart"></i>Productos</a></li>
+                        <li class="menu"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
     </body>
 </html>
