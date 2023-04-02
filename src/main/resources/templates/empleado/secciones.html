@@ -67,14 +67,14 @@
                                     </table>
                                 </div>
                             </div>
-                                <div th:if="${empleados == null or empleados.empty}">
-                                    <div class="titulo">
-                                        <h3>¡Lo sentimos! No existen empleados que mostrar</h3>
-                                    </div>
-                                    <p>Puede agregar un nuevo empleado presionando el botón de + que se le muestra en pantalla.</p>
+                            <div th:if="${empleados == null or empleados.empty}">
+                                <div class="titulo">
+                                    <h3>¡Lo sentimos! No existen empleados que mostrar</h3>
                                 </div>
+                                <p>Puede agregar un nuevo empleado presionando el botón de + que se le muestra en pantalla.</p>
                             </div>
                         </div>
+                    </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <a th:href="@{/empleado/nuevo}"
                            class="btn btn-circular">
@@ -98,7 +98,7 @@
                                name="idEmpleado" 
                                th:field="*{idEmpleado}"/>
                         <div>
-                            <label>Nombre</label><br>
+                            <label class="label-edit">Nombre</label><br>
                             <input type="text" 
                                    name="nombre" 
                                    value="" 
@@ -107,32 +107,40 @@
                                    required="true"/>
                         </div>
                         <br>
-                        <label class="label-edit">Apellidos</label><br>
-                        <input type="text" 
-                               name="apellidos" 
-                               value="" 
-                               th:field="*{apellidos}"
-                               size="40"
-                               required="true"/>
+                        <div>
+                            <label class="label-edit">Apellidos</label><br>
+                            <input type="text" 
+                                   name="apellidos" 
+                                   value="" 
+                                   th:field="*{apellidos}"
+                                   size="40"
+                                   required="true"/>
+                        </div>
                         <br>
-                        <label class="label-edit">Contacto</label><br>
-                        <input type="tel" 
-                               name="contacto" 
-                               value="" 
-                               th:field="*{contacto}"
-                               size="15"
-                               required="true"/>
+                        <div>
+                            <label class="label-edit">Contacto</label><br>
+                            <input type="text" 
+                                   name="contacto" 
+                                   value="" 
+                                   th:field="*{contacto}"
+                                   size="15"
+                                   required="true"/>
+                        </div>
                         <br>
-                        <label class="label-edit">Salario</label><br>
-                        <input type="number" 
-                               name="salario" 
-                               value="" 
-                               th:field="*{salario}"
-                               size="15"
-                               required="true"/>
+                        <div>
+                            <label class="label-edit">Salario</label><br>
+                            <input type="text" 
+                                   name="salario" 
+                                   value="" 
+                                   th:field="*{salario}"
+                                   size="15"
+                                   required="true"/>
+                        </div>
                         <br>
-                        <button class="btn btn-form" type="submit">Agregar</button>
-                        <a class="btn btn-secondary">Cancelar</a>
+                        <div class="gap-10 text-center">
+                            <button class="btn btn-form btn-lg" type="submit">Agregar</button>
+                            <a class="btn btn-secondary btn-cancelar btn-lg">Cancelar</a>
+                        </div>
                     </form>  
                     <hr>
                 </div>
@@ -153,36 +161,44 @@
                         <input type="hidden" 
                                name="idEmpleado" 
                                th:field="*{idEmpleado}"/>
+                        <div>
                         <label class="label-edit">Nombre</label><br>
                         <input type="text" 
                                name="nombre" 
                                value="" 
                                th:field="*{nombre}"
                                size="30" />
+                        </div>
                         <br>
+                        <div>
                         <label class="label-edit">Apellidos</label><br>
                         <input type="text" 
                                name="apellidos" 
                                value="" 
                                th:field="*{apellidos}"
                                size="40" />
+                        </div>
                         <br>
+                        <div>
                         <label class="label-edit">Contacto</label><br>
-                        <input type="tel" 
+                        <input type="text" 
                                name="contacto" 
                                value="" 
                                th:field="*{contacto}"
                                size="15" />
+                        </div>
                         <br>
                         <label class="label-edit">Salario</label><br>
-                        <input type="number" 
+                        <input type="text" 
                                name="salario" 
                                value="" 
                                th:field="*{salario}"
                                size="15" />
                         <br>
-                        <button class="btn btn-form" type="submit">Finalizar edición</button>
-                        <a class="btn btn-secondary">Cancelar edición</a>
+                        <div class="gap-10 text-center">
+                            <button class="btn btn-form btn-lg" type="submit">Finalizar edición</button>
+                            <a class="btn btn-secondary btn-cancelar btn-lg">Cancelar edición</a>
+                        </div>
                     </form>  
                     <hr>
                 </div>

@@ -116,12 +116,35 @@ input[type="text"] {
 .btn-form {
     background-color: #5E8C5D;
     color: #F2F2F2;
+    margin-right: 60px;
+    margin-top: 45px;
+    padding: 10px 20px;
+    width: 200px;
 }
 
 .btn-form:hover {
     background-color: #83A582;
     transition: 0.5s;
     color: #F2F2F2;
+    padding: 10px 20px;
+    width: 200px;
+}
+
+.btn-cancelar {
+    background-color: gray;
+    color: #F2F2F2;
+    margin-top: 45px;
+    padding: 10px 20px;
+    width: 200px;
+}
+
+.btn-cancelar:hover{
+    background-color: #A6A6A6;
+    transition: 0.5s;
+    color: #F2F2F2;
+    border: none;
+    padding: 10px 20px;
+    width: 200px;
 }
 
 .btn-listas-editar {
