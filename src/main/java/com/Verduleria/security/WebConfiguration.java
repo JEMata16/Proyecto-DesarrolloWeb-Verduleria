@@ -35,11 +35,14 @@ public class WebConfiguration {
         http.csrf().disable()
                 .authorizeHttpRequests((auth)-> auth
                     .requestMatchers("/","/register","/register/save").permitAll()
-                    .requestMatchers("/empleado/**").hasRole("ADMIN")
+                    .requestMatchers("/empleado/**",
+                            "/homePage",
+                            "/inicio",
+                                    "/empleado").hasRole("ADMIN")
                 )
                 .formLogin((form)->form
                     .loginPage("/")
-                        .defaultSuccessUrl("/empleado/empleados")
+                        .defaultSuccessUrl("/inicio")
                         .loginProcessingUrl("/")
                         .failureUrl("/register")
                     .permitAll()
