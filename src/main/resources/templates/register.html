@@ -22,8 +22,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <input type="text" placeholder="Username" th:field="*{username}"><br>
                     <p th:if="${#fields.hasErrors('username')}"></p>
                     <p class="label-password">Contraseña</p>
-                    <input type="password" placeholder="Contraseña" name="contraseña" th:field="*{pass}"><br>
-                    <p th:if="${#fields.hasErrors('pass')}"></p>
+                    <input type="password" placeholder="Contraseña" name="contraseña" th:field="*{password}"><br>
+                    <p th:if="${#fields.hasErrors('password')}"></p>
                     <input class="submit-btn" type="submit" value="Crear cuenta">
                 </form>
             </div>

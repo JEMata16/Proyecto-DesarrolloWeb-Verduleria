@@ -4,28 +4,41 @@
  */
 package com.Verduleria.service;
 
-import com.Verduleria.Domain.User;
+import com.Verduleria.Domain.Cargo;
 import com.Verduleria.dao.UserDao;
-import com.Verduleria.security.DetallesUsuario;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service("userDetailsService")
 public class DetallesUsuarioServicio implements UserDetailsService {
     
     @Autowired
     private UserDao userDao;
-    
+
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userDao.findByEmail(email);
+    @Transactional(readOnly=true)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        
+        com.Verduleria.Domain.User user = userDao.findByUsername(username);
         
         if(user == null){
-            throw new UsernameNotFoundException("No se encontro usuario");
+            throw new UsernameNotFoundException(username);
         }
         
-        return new DetallesUsuario(user);
+        var cargos = new ArrayList<GrantedAuthority>();
+        
+        for(Cargo cargo: user.getCargo()){
+            cargos.add(new SimpleGrantedAuthority(cargo.getCargo()));
+        }
+        
+        return new User(user.getUsername(),user.getPassword(),cargos);
     }
-    //Funciona
+    
+    
 }
