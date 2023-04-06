@@ -39,8 +39,8 @@
                                 <div class="titulo"><h2>Lista de Empleados</h2></div>
                                 <br>
                                 <div class="card">
-                                    <table class="table table-hover">
-                                        <thead class="table-success">
+                                    <table class="table">
+                                        <thead class="table-hcustom">
                                             <tr>
                                                 <th>Nombre</th>
                                                 <th>Apellidos</th>
@@ -139,7 +139,10 @@
                         <br>
                         <div class="gap-10 text-center">
                             <button class="btn btn-form btn-lg" type="submit">Agregar</button>
-                            <a class="btn btn-secondary btn-cancelar btn-lg">Cancelar</a>
+                            <button type="button" 
+                                    class="btn btn-secondary btn-cancelar btn-lg" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#cancelarAdicion">Cancelar</button>
                         </div>
                     </form>  
                     <hr>
@@ -162,30 +165,30 @@
                                name="idEmpleado" 
                                th:field="*{idEmpleado}"/>
                         <div>
-                        <label class="label-edit">Nombre</label><br>
-                        <input type="text" 
-                               name="nombre" 
-                               value="" 
-                               th:field="*{nombre}"
-                               size="30" />
+                            <label class="label-edit">Nombre</label><br>
+                            <input type="text" 
+                                   name="nombre" 
+                                   value="" 
+                                   th:field="*{nombre}"
+                                   size="30" />
                         </div>
                         <br>
                         <div>
-                        <label class="label-edit">Apellidos</label><br>
-                        <input type="text" 
-                               name="apellidos" 
-                               value="" 
-                               th:field="*{apellidos}"
-                               size="40" />
+                            <label class="label-edit">Apellidos</label><br>
+                            <input type="text" 
+                                   name="apellidos" 
+                                   value="" 
+                                   th:field="*{apellidos}"
+                                   size="40" />
                         </div>
                         <br>
                         <div>
-                        <label class="label-edit">Contacto</label><br>
-                        <input type="text" 
-                               name="contacto" 
-                               value="" 
-                               th:field="*{contacto}"
-                               size="15" />
+                            <label class="label-edit">Contacto</label><br>
+                            <input type="text" 
+                                   name="contacto" 
+                                   value="" 
+                                   th:field="*{contacto}"
+                                   size="15" />
                         </div>
                         <br>
                         <label class="label-edit">Salario</label><br>
@@ -197,15 +200,57 @@
                         <br>
                         <div class="gap-10 text-center">
                             <button class="btn btn-form btn-lg" type="submit">Finalizar edición</button>
-                            <a class="btn btn-secondary btn-cancelar btn-lg">Cancelar edición</a>
+                            <button type="button" 
+                                    class="btn btn-secondary btn-cancelar btn-lg" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#cancelarEdicion">Cancelar edición</button>
                         </div>
                     </form>  
                     <hr>
                 </div>
             </div>
         </section>
-        <section>
-
+        <section th:fragment="cancelarAdicion">
+            <div class="modal fade" 
+                 id="cancelarAdicion" tabindex="-1" role="dialog" 
+                 aria-labelledby="cancelarAdicionTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fas fa-times-circle icon-custom"></i>
+                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la adición?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="parrafos">Podrá agregar un nuevo empleado en cualquier momento</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-ace-popup" th:href="@{/empleado/empleados}">Aceptar</button>
+                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="cancelarEdicion">
+            <div class="modal fade" 
+                 id="cancelarEdicion" tabindex="-1" role="dialog" 
+                 aria-labelledby="cancelarEdicionTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fas fa-times-circle icon-custom"></i>
+                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la edición?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="parrafos">Podrá editar los empleados en cualquier momento</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-ace-popup" th:href="@{/empleado/empleados}">Aceptar</button>
+                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </body>
 </html>

@@ -47,6 +47,7 @@ input[type="text"] {
     color: #5E8C5D;
     margin-top: 10px;
 }
+
 #login p,
 #register p {
     font-size: 18px;
@@ -147,17 +148,41 @@ input[type="text"] {
     width: 200px;
 }
 
+.btn-can-popup{
+    background-color: gray;
+    color: #F2F2F2;
+}
+
+.btn-can-popup:hover{
+    background-color: #A6A6A6;
+    color: #F2F2F2;
+    border: none;
+    transition: 0.5s;
+}
+
+.btn-ace-popup {
+    background-color: #5E8C5D;
+    color: #F2F2F2;
+}
+
+.btn-ace-popup:hover{
+    background-color: #83A582;
+    transition: 0.5s;
+    color: #F2F2F2;
+    border: none;
+}
+
 .btn-listas-editar {
     width: 30px;
     height: 30px;
     padding: 3px 3px 3px 3px;
     border-radius: 60px;
-    background-color: #5E8C5D;
+    background-color: #83A582;
     color: #F2F2F2;
 }
 
 .btn-listas-editar:hover {
-    background-color: #83A582;
+    background-color: #5E8C5D;
     transition: 0.5s;
     color: #F2F2F2;
     border: none;
@@ -201,6 +226,25 @@ input[type="text"] {
 
 .label-edit {
     color: #5E8C5D;
+}
+
+.table-hcustom{
+    background-color: #83A582;
+    color: #F2F2F2;
+}
+
+.table-bcustom {
+    background-color: #A6A6A6;
+    color: #1C4002;
+}
+
+.icon-custom {
+    color: #325935;
+}
+
+.parrafos {
+    color: #1C4002;
+    text-align: center;
 }
 /* Estos estilos son para el menú situado a un lado de la página */
 .aside{
