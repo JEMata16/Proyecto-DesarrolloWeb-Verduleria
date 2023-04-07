@@ -309,3 +309,64 @@ input[type="text"] {
 .texto-inicio {
     padding-top: 90px;
 }
+
+
+/* Estos estilos son para la parte de Productos */
+.contenedor-productos {
+    width: 100%;
+    overflow: hidden;
+    background: white;
+    margin: 5px auto;
+    padding: 3px 0px;  
+}
+
+.lista-ventanas-productos {
+    padding: 8px;
+    margin: 6px;
+}
+
+.contenedor-productos .lista-ventanas-productos .elementos-ventanas-productos {
+    list-style: none;
+    float: left;
+    width: 28%;
+    height: 350px;
+    background: whitesmoke;
+    margin: 20px 3px 0px 10px;
+    border-radius:  15px;
+}
+
+.contenedor-productos .lista-ventanas-productos .elementos-ventanas-productos .productos-header {
+    margin-top: 5px;
+}
+
+.productos-header {
+    margin-bottom: 10px;
+}
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 50px;
+    height: 50px;
+    padding: 9px 0px;
+    border-radius: 60px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.42857;
+    margin-left: 10px;
+}
+
+.info-ventanas-productos {
+    text-align: center;
+}
+.info-ventanas-productos li {
+    list-style: none;
+    margin-bottom: 20px;
+}
+

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Verduleria</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+
+        <!-- Seccion para crear el menu de lado en empleados -->
+        <section th:fragment="menuLado">
+            <div class="aside">
+                <aside>
+                    <ul>
+                        <li class="menu"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
+                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-shopping-cart"></i>Productos</a></li>
+                        <li class="menu"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Muestra el inicio de la seccion de productos con la lista de los productos agregados -->
+        <section th:fragment="inicioProducto" id="productos">
+            <div class="contenido">
+                <div class="container-lg">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div th:if="${productos != null and !productos.empty}">
+                                <div>
+                                    <div class="contenedor-productos">
+                                        <ul class="lista-ventanas-productos
+                                            shadow p-3 mb-5 bg-body-tertiary rounded" th:each="producto : ${productos}">
+                                            <li class="elementos-ventanas-productos">
+                                                <div class="productos-header"><a class="fas fa-trash btn btn-light btn-circle btn-x1"></a>
+                                                </div>
+                                                <ul class="info-ventanas-productos" >
+                                                    <li class="fs-1 fw-bold text-success">[[${producto.nombre}]]</li>
+                                                    <li>Cantidad Disp: [[${producto.cantidadDisponible}]] [[${producto.unidadMedida.nombre}]]</li>
+                                                    <li>Precio: ₡[[${producto.precio}]]</li>
+                                                </ul>
+                                                <div class="editar-btn-producto"
+                                                     style="margin: 0px auto; width: 50%; text-align: center;">
+                                                    <a th:href="@{/producto/editar} + ${producto.idProducto}"
+                                                       class="btn btn-success"><i class="fas fa-pencil "></i> Editar</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:if="${productos == null or productos.empty}">
+                                <div class="titulo">
+                                    <h3>¡Lo sentimos! No existen productos que mostrar</h3>
+                                </div>
+                                <p>Puede agregar un nuevo producto presionando el botón de + que se le muestra en pantalla.</p>
+
+                            </div>
+
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a th:href="@{/producto/nuevo}"
+                               class="btn btn-circular">
+                                <i class="fas fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

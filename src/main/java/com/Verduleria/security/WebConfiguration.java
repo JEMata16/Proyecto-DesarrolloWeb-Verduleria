@@ -38,11 +38,12 @@ public class WebConfiguration {
                     .requestMatchers("/empleado/**",
                             "/homePage",
                             "/inicio",
-                                    "/empleado").hasRole("ADMIN")
+                                    "/empleado",
+                                    "/producto/**").hasRole("ADMIN")
                 )
                 .formLogin((form)->form
                     .loginPage("/")
-                        .defaultSuccessUrl("/inicio")
+                        .defaultSuccessUrl("/producto/productos")
                         .loginProcessingUrl("/")
                         .failureUrl("/register")
                     .permitAll()
