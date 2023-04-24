@@ -17,13 +17,23 @@ public class ProductoServiceImpl implements ProductoService {
     private ProductoDao productoDao;
     
     @Override
-    public void addProducto() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void addProducto(Producto producto) {
+       productoDao.save(producto);
     }
 
     @Override
     public List<Producto> obtenerProductos() {
         return productoDao.findAll();
     }
-    
+
+    @Override
+    public void deleteProducto(Producto producto) {
+        productoDao.delete(producto);
+    }
+
+    @Override
+    public Producto getProducto(Producto producto) {
+        return productoDao.findById(producto.getIdProducto()).orElse(null);
+    }
+
 }

@@ -8,7 +8,11 @@ import java.util.List;
 import com.Verduleria.Domain.Producto;
 
 public interface ProductoService {
-    public void addProducto();
+    public void addProducto(Producto producto);
     
     public List<Producto> obtenerProductos();
+    
+    public void deleteProducto(Producto producto);
+    
+     public Producto getProducto(Producto producto);
 }

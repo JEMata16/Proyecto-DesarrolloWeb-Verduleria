@@ -7,10 +7,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <head th:replace="~{layout/plantilla :: head}">
         <title>Verduleria</title>
         <meta charset="UTF-8">
+        <link th:href="@{/css/estilos.css}" rel="stylesheet" type="text/css"/>
     </head>
     <body>
 
-        <!-- Seccion para crear el menu de lado en empleados -->
+        <!-- Seccion para crear el menu de lado en productos -->
         <section th:fragment="menuLado">
             <div class="aside">
                 <aside>
@@ -18,6 +19,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <li class="menu"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
                         <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-shopping-cart"></i>Productos</a></li>
                         <li class="menu"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Seccion para crear el menu de lado en productos agregar o editar -->
+        <section th:fragment="menuEdiciones">
+            <div class="aside">
+                <aside>
+                    <ul>
+                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-users"></i>Productos</a></li>
                     </ul>
                 </aside>
             </div>
@@ -33,9 +45,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <div>
                                     <div class="contenedor-productos">
                                         <ul class="lista-ventanas-productos
-                                            shadow p-3 mb-5 bg-body-tertiary rounded" th:each="producto : ${productos}">
-                                            <li class="elementos-ventanas-productos">
-                                                <div class="productos-header"><a class="fas fa-trash btn btn-light btn-circle btn-x1"></a>
+                                            bg-body-tertiary rounded" th:each="producto : ${productos}">
+                                            <li class="shadow p-3 mb-5 elementos-ventanas-productos">
+                                                <div class="productos-header">
+                                                    <a class="fas fa-trash btn btn-light btn-circle" th:href="@{/producto/eliminar/} + ${producto.idProducto}"></a>
                                                 </div>
                                                 <ul class="info-ventanas-productos" >
                                                     <li class="fs-1 fw-bold text-success">[[${producto.nombre}]]</li>
@@ -44,7 +57,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 </ul>
                                                 <div class="editar-btn-producto"
                                                      style="margin: 0px auto; width: 50%; text-align: center;">
-                                                    <a th:href="@{/producto/editar} + ${producto.idProducto}"
+                                                    <a th:href="@{/producto/editar/} + ${producto.idProducto}"
                                                        class="btn btn-success"><i class="fas fa-pencil "></i> Editar</a>
                                                 </div>
                                             </li>
@@ -65,6 +78,186 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <a th:href="@{/producto/nuevo}"
                                class="btn btn-circular">
                                 <i class="fas fa-plus"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="agregarProducto">
+            <div class="contenido">
+                <div class="container">
+                    <h2 class="subtitulo">Agregar producto</h2>
+                    <br>
+                    <hr>
+                    <form th:action="@{/producto/guardar}"
+                          method="post"
+                          th:object="${producto}"
+                          class="was-validated">
+                        <input type="hidden" 
+                               name="idProducto" 
+                               th:field="*{idProducto}"/>
+                        <div>
+                            <label class="label-edit">Nombre del producto</label><br>
+                            <input type="text" 
+                                   name="nombre" 
+                                   value="" 
+                                   th:field="*{nombre}"
+                                   size="30"
+                                   required="true"/>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="label-edit">Cantidad Disp.</label><br>
+                            <div class="d-flex flex-row">
+                                <input type="text" 
+                                       name="cantidadDisponible" 
+                                       value="" 
+                                       th:field="*{cantidadDisponible}"
+                                       size="15"
+                                       required="true"/>
+
+                                <div class="btn-group mr-2" role="group">
+                                    <input type="radio" class="btn-check" name="unidadMedida.idUnidadMedida" value="1" id="btnradio1" autocomplete="off" checked>
+                                    <label class="btn btn-outline-success rounded-start " for="btnradio1">Cajas</label>
+
+                                    <input type="radio" class="btn-check" name="unidadMedida.idUnidadMedida" value="2" id="btnradio2" autocomplete="off">
+                                    <label class="btn btn-outline-success" for="btnradio2">Unid</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="label-edit">Precio</label><br>
+                            <input type="text" 
+                                   name="precio" 
+                                   value="" 
+                                   th:field="*{precio}"
+                                   size="15"
+                                   required="true"/>
+                        </div>
+                        <br>
+                        <div class="gap-10 text-center">
+                            <button class="btn btn-form btn-lg" type="submit">Agregar</button>
+                            <button type="button" 
+                                    class="btn btn-secondary btn-cancelar btn-lg" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#cancelarAdicion">Cancelar</button>
+                        </div>
+                    </form>  
+                    <hr>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Muestra el inicio de la seccion de empleado con la lista de los empleados agregados -->
+        <section th:fragment="editarProducto">
+            <section th:replace="~{producto/secciones :: menuEdiciones}"/>
+            <div class="contenido">
+                <div class="container">
+                    <h2 class="subtitulo">Editar producto</h2>
+                    <br>
+                    <hr>
+                    <form th:action="@{/producto/guardar}"
+                          method="post"
+                          th:object="${producto}"
+                          class="was-validated">
+                        <input type="hidden" 
+                               name="idProducto" 
+                               th:field="*{idProducto}"/>
+                        <div>
+                            <label class="label-edit">Nombre del producto</label><br>
+                            <input type="text" 
+                                   name="nombre" 
+                                   value="" 
+                                   th:field="*{nombre}"
+                                   size="30"
+                                   required="true"/>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="label-edit">Cantidad Disp.</label><br>
+                            <div class="d-flex flex-row">
+                                <input type="text" 
+                                       name="cantidadDisponible" 
+                                       value="" 
+                                       th:field="*{cantidadDisponible}"
+                                       size="15"
+                                       required="true"/>
+
+                                <div class="btn-group mr-2" role="group">
+                                    <input type="radio" class="btn-check" name="unidadMedida.idUnidadMedida" value="1" id="btnradio1" autocomplete="off" checked>
+                                    <label class="btn btn-outline-success rounded-start " for="btnradio1">Cajas</label>
+
+                                    <input type="radio" class="btn-check" name="unidadMedida.idUnidadMedida" value="2" id="btnradio2" autocomplete="off">
+                                    <label class="btn btn-outline-success" for="btnradio2">Unid</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="label-edit">Precio</label><br>
+                            <input type="text" 
+                                   name="precio" 
+                                   value="" 
+                                   th:field="*{precio}"
+                                   size="15"
+                                   required="true"/>
+                        </div>
+                        <br>
+                        <div class="gap-10 text-center">
+                            <button class="btn btn-form btn-lg" type="submit">Finalizar edición</button>
+                            <button type="button" 
+                                    class="btn btn-secondary btn-cancelar btn-lg" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#cancelarEdicion">Cancelar edición</button>
+                        </div>
+                    </form>  
+                    <hr>
+                </div>
+            </div>
+        </section>
+            
+            <section th:fragment="cancelarAdicion">
+            <div class="modal fade" 
+                 id="cancelarAdicion" tabindex="-1" role="dialog" 
+                 aria-labelledby="cancelarAdicionTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fas fa-times-circle icon-custom"></i>
+                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la adición?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="parrafos">Podrá agregar un nuevo producto en cualquier momento</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-ace-popup" th:href="@{/producto/producto}">Aceptar</button>
+                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+            
+        <section th:fragment="cancelarEdicion">
+            <div class="modal fade" 
+                 id="cancelarEdicion" tabindex="-1" role="dialog" 
+                 aria-labelledby="cancelarEdicionTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fas fa-times-circle icon-custom"></i>
+                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la edición?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="parrafos">Podrá editar los productos en cualquier momento</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-ace-popup" th:href="@{/producto/productos}">Aceptar</button>
+                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
                 </div>

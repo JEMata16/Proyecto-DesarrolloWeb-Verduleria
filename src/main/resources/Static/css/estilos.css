@@ -321,7 +321,7 @@ input[type="text"] {
 }
 
 .lista-ventanas-productos {
-    padding: 8px;
+    padding-right: 8px;
     margin: 6px;
 }
 
@@ -369,4 +369,5 @@ input[type="text"] {
     list-style: none;
     margin-bottom: 20px;
 }
+
 
