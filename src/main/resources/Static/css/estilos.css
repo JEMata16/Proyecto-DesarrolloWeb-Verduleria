@@ -310,6 +310,36 @@ input[type="text"] {
     padding-top: 90px;
 }
 
+.table-edit {
+    border-style: none;
+    border: 0px;
+}
+
+.popup {
+    width: 1200px;
+    background: #F2F2F2;
+    border-radius: 6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #1C4002;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+}
+
+.open-popup {
+    visibility: visible;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1);
+}
+.popup h2{
+    font-size: 30px;
+    margin: 30px 0 10px;
+}
+
 
 /* Estos estilos son para la parte de Productos */
 .contenedor-productos {
