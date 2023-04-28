@@ -17,7 +17,7 @@
         <header th:fragment="header" class="header">
             <nav class="navbar navbar-expand-lg navbar-dark navbar-custom p-0">
                 <div class="container">
-                    <a th:href="@{/inicio}" class="navbar-brand">[[#{inicio.nombre}]</a>
+                    <a th:href="@{/inicio}" class="navbar-brand">[[#{inicio.nombre}]]</a>
                     <button class="navbar-toggler" 
                             data-bs-toggle="collapse"
                             data-bs-target="#menu">
@@ -35,11 +35,11 @@
                         <li class="nav-item px-2">
                             <a class="nav-menu-link nav-link menu-arriba"
                                th:href="@{/inicio}">
-                                <i class="fas fa-home"></i>[[#{inicio.inicio}]</a>
+                                <i class="fas fa-home"></i>[[#{inicio.inicio}]]</a>
                         </li>
                         <li class="nav-item px-2">
                             <a class="nav-menu-link nav-link menu-arriba"
-                               th:href="@{/}"><i class="fas fa-sign-out"></i>[[#{inicio.salir}]</a>
+                               th:href="@{/}"><i class="fas fa-sign-out"></i>[[#{inicio.salir}]]</a>
                         </li>
                     </ul>
                 </div>
@@ -49,9 +49,9 @@
             <div class="aside">
                 <aside>
                     <ul>
-                        <li class="menu"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>[[#{inicio.empleados}]</a></li>
-                        <li class="menu"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>[[#{inicio.productos}]</a></li>
-                        <li class="menu"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>[[#{inicio.cajas}]</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>[[#{inicio.empleados}]]</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>[[#{inicio.productos}]]</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>[[#{inicio.cajas}]]</a></li>
                     </ul>
                 </aside>
             </div>
