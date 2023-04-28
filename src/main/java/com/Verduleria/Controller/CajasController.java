@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/ventas")
@@ -103,14 +104,19 @@ public class CajasController {
             cajaObject.getProducto().setIdProducto(idProducto);
             cajasService.addCajas(cajaObject);
         }
-        return "redirect:/ventas/cajas";
-    }
-
-    @GetMapping("/registrar")
-    public String productoAlmacenado(@ModelAttribute("cajas") Cajas cajaObject) {
-        System.out.println(cajaObject);
         return "redirect:/ventas/nuevo";
     }
+
+    @PostMapping("/registrar")
+    public String productoAlmacenado(@RequestParam("nombreCliente") String nombreCliente,
+                                 @RequestParam("productoNombre") String productoNombre,
+                                 @RequestParam("cantidadComprada") int cantidadComprada) {
+        Long idProducto = productoService.loadByNombre(productoNombre);
+        Cajas cajas = new Cajas(nombreCliente,cantidadComprada, 0, idProducto);
+        System.out.println(cajas);
+        return "redirect:/ventas/nuevo";
+    }
+    
     
     @GetMapping("/nuevo")
     public String nuevoCajas(Cajas cajas){
