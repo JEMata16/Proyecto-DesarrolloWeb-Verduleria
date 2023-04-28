@@ -14,5 +14,9 @@ public interface ProductoService {
     
     public void deleteProducto(Producto producto);
     
-     public Producto getProducto(Producto producto);
+    public Producto getProducto(Producto producto);
+    
+    public String getProductoById(Long producto);
+    
+    public Long loadByNombre(String producto);
 }

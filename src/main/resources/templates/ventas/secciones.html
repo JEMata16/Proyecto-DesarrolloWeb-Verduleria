@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Verduleria</title>
+        <meta charset="UTF-8">
+        <link th:href="@{/css/estilos.css}" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+        <section th:fragment="menuLado">
+            <div class="aside">
+                <aside>
+                    <ul>
+                        <li class="menu"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
+                        <li class="menu "><a class="menu-link"><i class="fas fa-shopping-cart"></i>Productos</a></li>
+                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Seccion para crear el menu de lado en productos agregar o editar -->
+        <section th:fragment="menuEdiciones">
+            <div class="aside">
+                <aside>
+                    <ul>
+                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <!-- Muestra el inicio de la seccion de cajas con la lista de los cajas agregados -->
+        <section th:fragment="inicioCajas" id="ventas">
+            <div class="contenido">
+                <div class="container-lg">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div th:if="${cajas != null and !cajas.empty}">
+                                <div class="titulo">
+                                    <h3>Lista de ventas del día</h3>
+                                </div>
+                                <a class="btn btn-form btn-lg" th:href="@{/ventas/nuevo}">Agregar</a>
+                                <br>
+                                <div class="card border border-white">
+                                    <table class="table">
+                                        <thead class="table-hcustom">
+                                            <tr>
+                                                <th>Nombre del cliente</th>
+                                                <th>Productos</th>
+                                                <th>Cant. Comprada</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="entry : ${productosPorCliente}">
+                                                <td>[[${entry.key}]]</td>
+                                                <td>[[${entry.value}]]</td>
+                                                <td>[[${cantidadPorCliente.get(entry.key)}]]</td>
+                                                <td>[[${totalComprasPorCliente.get(entry.key)}]]</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div><br>
+
+                                <div class="card">
+                                    <div>
+                                        <h3 class="txt-success">Total de ingresos del día</h3>
+                                        <label>₡ [[${totalCajas}]]</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:if="${cajas == null or cajas.empty}">
+                                <div class="titulo">
+                                    <h3>Lista de ventas del día</h3>
+                                </div>
+                                <p>¡Aún no se han agregado ventas el día de hoy!</p>
+                                <a class="btn btn-form btn-lg" th:href="@{/ventas/nuevo}">Agregar</a>
+                                <br>
+                                <div class="titulo">
+                                    <h3>Total de ingresos del día</h3>
+                                </div>
+                                <p>¡Aún no se registran ingresos el día de hoy!<br>
+                                    Sus ingresos serán calculados automáticamente al agregar ventas.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+
+        <section th:fragment="agregarCajas">
+            <div class="contenido">
+                <div class="container">
+                    <h2 class="subtitulo">Agregar venta</h2>
+                    <br>
+                    <hr>
+                    <div id="resultsBlock"></div>
+                        <form th:action="@{/ventas/guardar}"
+                              method="post"
+                                th:object="${cajas}"
+                              class="was-validated">
+                            <input type="hidden" 
+                                   name="idCajas" 
+                                   th:field="*{idCajas}"/>
+                            <div>
+                                <label class="label-edit">Nombre del cliente</label><br>
+                                <input type="text" 
+                                       name="nombreCliente"
+                                       value="" 
+                                       th:field="*{nombreCliente}"
+                                       size="30"
+                                       required="true"/>
+                            </div>
+                            <br>
+                            <div>
+                                <label class="label-edit d-flex flex-row">Productos comprados</label><br>
+                                <div class="d-flex flex-row">
+                                    <input type="text" 
+                                           name="input" 
+                                           value="" 
+                                           th:field="*{producto.nombre}"
+                                           size="15"
+                                           required="true"/>
+                                    <div class="btn-group mr-2" role="group">
+                                        <a th:href="@{/ventas/registrar}"
+                                                class="btn btn-success btn-listas-editar"
+                                                id=""
+                                                onClick="enviarDatos(this.form)" type="button">
+                                            <i class="fas fa-plus"></i></a> 
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div>
+                                <label class="label-edit">Cant. Compra</label><br>
+                                <input type="text" 
+                                       name="input" 
+                                       value="" 
+                                       th:field="*{cantidadComprada}"
+                                       size="15"
+                                       required="true"/>
+                            </div>
+                            <br>
+                            <div>
+                                <label class="label-edit">Total de la compra</label><br>
+                                <div>
+                                    <p class="p-4 rounded-bottom rounded-start rounded-end shadow-md bg-success">[[${cajas.nombreCliente}]]</p>
+                                </div>
+
+                                <br>
+                                <div class="gap-10 text-center">
+                                    <button class="btn btn-form btn-lg" type="submit">Agregar</button>
+                                    <button type="button" 
+                                            class="btn btn-secondary btn-cancelar btn-lg" 
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#cancelarAdicion">Cancelar</button>
+                                </div>
+
+                        </form>  
+                    <hr>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="cancelarAdicion">
+            <div class="modal fade" 
+                 id="cancelarAdicion" tabindex="-1" role="dialog" 
+                 aria-labelledby="cancelarAdicionTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fas fa-times-circle icon-custom"></i>
+                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la adición?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="parrafos">Podrá agregar un nuevo producto en cualquier momento</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-ace-popup" th:href="@{/producto/producto}">Aceptar</button>
+                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section th:fragment="cancelarEdicion">
+            <div class="modal fade" 
+                 id="cancelarEdicion" tabindex="-1" role="dialog" 
+                 aria-labelledby="cancelarEdicionTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fas fa-times-circle icon-custom"></i>
+                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la edición?</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="parrafos">Podrá editar los productos en cualquier momento</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-ace-popup" th:href="@{/producto/productos}">Aceptar</button>
+                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

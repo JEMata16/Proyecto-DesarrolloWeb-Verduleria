@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.Verduleria.Domain.Producto;
 
 public interface ProductoDao extends JpaRepository<Producto, Long>{
-    
+     Producto findByNombre(String producto);
 }

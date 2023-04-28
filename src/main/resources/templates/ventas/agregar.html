@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns:th="http://www.thymeleaf.org/%22%3E">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Verduleria</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:fragment="header" class="header">
+            <nav class="navbar navbar-expand-lg navbar-dark navbar-custom p-0">
+                <div class="container">
+                    <a th:href="@{/}" class="navbar-brand">Verdulería La China</a>
+                    <button class="navbar-toggler" 
+                            data-bs-toggle="collapse"
+                            data-bs-target="#menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+        </header>
+        <section th:replace="~{ventas/secciones :: menuEdiciones}"/>
+        <section th:replace="~{ventas/secciones :: agregarCajas}"/>
+
+
+        <script>
+
+            function enviarDatos(formulario) {
+                var nombreCliente = formulario.nombreCliente.value;
+                var productoNombre = formulario['producto.nombre'].value;
+                var cantidadComprada = formulario.cantidadComprada.value;
+
+                formulario.nombreCliente.value = "";
+                formulario['producto.nombre'].value = "";
+                formulario.cantidadComprada.value = "";
+
+                $.ajax({
+                    type: 'GET',
+                    url: '/ventas/registrar',
+                    data: {
+                        "nombreCliente": nombreCliente,
+                        "productoNombre": productoNombre,
+                        "cantidadComprada": cantidadComprada
+                    },
+                    success: function (formulario) {
+                        limpiarInputs($('#cajasForm'));
+                    }
+                });
+            }
+
+
+
+            function limpiarInputs(formulario) {
+                formulario.submit();
+                var inputs = formulario.getElementsByName('input');
+                for (var i = 0; i < inputs.length; i++) {
+                    if (inputs[i].type === 'text' || inputs[i].type === 'number') {
+                        inputs[i].value = '';
+                    }
+
+                    var url = '/ventas/nuevo';
+                    $("#resultsBlock").load(url);
+                }
+            }
+        </script>
+    </body>
+</html>

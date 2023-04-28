@@ -39,11 +39,11 @@ public class WebConfiguration {
                             "/homePage",
                             "/inicio",
                                     "/empleado",
-                                    "/producto/**").hasRole("ADMIN")
+                                    "/producto/**","/ventas/**").hasRole("ADMIN")
                 )
                 .formLogin((form)->form
                     .loginPage("/")
-                        .defaultSuccessUrl("/producto/productos")
+                        .defaultSuccessUrl("/ventas/cajas")
                         .loginProcessingUrl("/")
                         .failureUrl("/register")
                     .permitAll()
