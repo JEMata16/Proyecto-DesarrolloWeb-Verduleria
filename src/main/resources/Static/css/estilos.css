@@ -108,6 +108,10 @@ input[type="text"] {
     color: #F2F2F2;
 }
 
+.btn-agregar-prod {
+    margin-top: 10px;
+}
+
 .btn-circular:hover {
     background-color: #83A582;
     transition: 0.5s;
@@ -291,6 +295,11 @@ input[type="text"] {
     color: #5E8C5D;
 }
 
+.ingresos {
+    color: #5E8C5D;
+    font-size: 20px;
+}
+
 .subtitulo {
     color: #325935;
 }
@@ -399,5 +408,3 @@ input[type="text"] {
     list-style: none;
     margin-bottom: 20px;
 }
-
-

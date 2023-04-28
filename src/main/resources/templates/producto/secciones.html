@@ -16,9 +16,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="aside">
                 <aside>
                     <ul>
-                        <li class="menu"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
-                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-shopping-cart"></i>Productos</a></li>
-                        <li class="menu"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>Empleados</a></li>
+                        <li class="menu seleccionado"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>Productos</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>Cajas</a></li>
                     </ul>
                 </aside>
             </div>
@@ -72,13 +72,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <p>Puede agregar un nuevo producto presionando el botón de + que se le muestra en pantalla.</p>
 
                             </div>
-
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a th:href="@{/producto/nuevo}"
-                               class="btn btn-circular">
-                                <i class="fas fa-plus"></i></a>
-                        </div>
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a th:href="@{/producto/nuevo}"
+                           class="btn btn-circular">
+                            <i class="fas fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -140,17 +139,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <br>
                         <div class="gap-10 text-center">
                             <button class="btn btn-form btn-lg" type="submit">Agregar</button>
-                            <button type="button" 
-                                    class="btn btn-secondary btn-cancelar btn-lg" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#cancelarAdicion">Cancelar</button>
+                            <a class="btn btn-secondary btn-cancelar btn-lg" 
+                               th:href="@{/producto/productos}">Cancelar</a>
                         </div>
                     </form>  
                     <hr>
                 </div>
             </div>
         </section>
-        
+
         <!-- Muestra el inicio de la seccion de empleado con la lista de los empleados agregados -->
         <section th:fragment="editarProducto">
             <section th:replace="~{producto/secciones :: menuEdiciones}"/>
@@ -209,18 +206,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <br>
                         <div class="gap-10 text-center">
                             <button class="btn btn-form btn-lg" type="submit">Finalizar edición</button>
-                            <button type="button" 
-                                    class="btn btn-secondary btn-cancelar btn-lg" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#cancelarEdicion">Cancelar edición</button>
+                            <a class="btn btn-secondary btn-cancelar btn-lg" 
+                               th:href="@{/producto/productos}">Cancelar Edición</a>
                         </div>
                     </form>  
                     <hr>
                 </div>
             </div>
         </section>
-            
-            <section th:fragment="cancelarAdicion">
+
+        <section th:fragment="cancelarAdicion">
             <div class="modal fade" 
                  id="cancelarAdicion" tabindex="-1" role="dialog" 
                  aria-labelledby="cancelarAdicionTitle" aria-hidden="true">
@@ -235,13 +230,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-ace-popup" th:href="@{/producto/producto}">Aceptar</button>
-                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-secondary btn-cancelar btn-lg" 
+                               th:href="@{/producto/productos}">Cancelar</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-            
+
         <section th:fragment="cancelarEdicion">
             <div class="modal fade" 
                  id="cancelarEdicion" tabindex="-1" role="dialog" 

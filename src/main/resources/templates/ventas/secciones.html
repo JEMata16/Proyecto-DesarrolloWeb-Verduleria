@@ -15,9 +15,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="aside">
                 <aside>
                     <ul>
-                        <li class="menu"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
-                        <li class="menu "><a class="menu-link"><i class="fas fa-shopping-cart"></i>Productos</a></li>
-                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>Empleados</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>Productos</a></li>
+                        <li class="menu seleccionado"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>Cajas</a></li>
                     </ul>
                 </aside>
             </div>
@@ -46,6 +46,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 </div>
                                 <a class="btn btn-form btn-lg" th:href="@{/ventas/nuevo}">Agregar</a>
                                 <br>
+                                <hr>
                                 <div class="card border border-white">
                                     <table class="table">
                                         <thead class="table-hcustom">
@@ -67,10 +68,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     </table>
                                 </div><br>
 
-                                <div class="card">
+                                <div class="card border border-white">
                                     <div>
-                                        <h3 class="txt-success">Total de ingresos del día</h3>
-                                        <label>₡ [[${totalCajas}]]</label>
+                                        <h3 class="txt-success subtitulo">Total de ingresos del día</h3>
+                                        <label class="ingresos">₡ [[${totalCajas}]]</label>
                                     </div>
                                 </div>
                             </div>
@@ -101,69 +102,65 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <br>
                     <hr>
                     <div id="resultsBlock"></div>
-                        <form th:action="@{/ventas/guardar}"
-                              method="post"
-                                th:object="${cajas}"
-                              class="was-validated">
-                            <input type="hidden" 
-                                   name="idCajas" 
-                                   th:field="*{idCajas}"/>
-                            <div>
-                                <label class="label-edit">Nombre del cliente</label><br>
-                                <input type="text" 
-                                       name="nombreCliente"
-                                       value="" 
-                                       th:field="*{nombreCliente}"
-                                       size="30"
-                                       required="true"/>
-                            </div>
-                            <br>
-                            <div>
-                                <label class="label-edit d-flex flex-row">Productos comprados</label><br>
-                                <div class="d-flex flex-row">
-                                    <input type="text" 
-                                           name="input" 
-                                           value="" 
-                                           th:field="*{producto.nombre}"
-                                           size="15"
-                                           required="true"/>
-                                    <div class="btn-group mr-2" role="group">
-                                        <a th:href="@{/ventas/registrar}"
-                                                class="btn btn-success btn-listas-editar"
-                                                id=""
-                                                onClick="enviarDatos(this.form)" type="button">
-                                            <i class="fas fa-plus"></i></a> 
-
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <div>
-                                <label class="label-edit">Cant. Compra</label><br>
+                    <form th:action="@{/ventas/guardar}"
+                          method="post"
+                          th:object="${cajas}"
+                          class="was-validated">
+                        <input type="hidden" 
+                               name="idCajas" 
+                               th:field="*{idCajas}"/>
+                        <div>
+                            <label class="label-edit">Nombre del cliente</label><br>
+                            <input type="text" 
+                                   name="nombreCliente"
+                                   value="" 
+                                   th:field="*{nombreCliente}"
+                                   size="30"
+                                   required="true"/>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="label-edit d-flex flex-row">Productos comprados</label><br>
+                            <div class="d-flex flex-row">
                                 <input type="text" 
                                        name="input" 
                                        value="" 
-                                       th:field="*{cantidadComprada}"
+                                       th:field="*{producto.nombre}"
                                        size="15"
                                        required="true"/>
+                                <div class="btn-group mr-2" role="group">
+                                    <a th:href="@{/ventas/registrar}"
+                                       class="btn btn-success btn-listas-editar btn-agregar-prod"
+                                       id=""
+                                       onClick="enviarDatos(this.form)" type="button">
+                                        <i class="fas fa-plus"></i></a> 
+
+                                </div>
                             </div>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="label-edit">Cant. Compra</label><br>
+                            <input type="text" 
+                                   name="input" 
+                                   value="" 
+                                   th:field="*{cantidadComprada}"
+                                   size="15"
+                                   required="true"/>
+                        </div>
+                        <br>
+                        <div>
+                            <label class="label-edit">Total de la compra</label><br>
+
+
                             <br>
-                            <div>
-                                <label class="label-edit">Total de la compra</label><br>
-                                <div>
-                                    <p class="p-4 rounded-bottom rounded-start rounded-end shadow-md bg-success">[[${cajas.nombreCliente}]]</p>
-                                </div>
+                            <div class="gap-10 text-center">
+                                <button class="btn btn-form btn-lg" type="submit">Agregar</button>
+                                <a class="btn btn-secondary btn-cancelar btn-lg" 
+                                   th:href="@{/ventas/cajas}">Cancelar</a>
+                            </div>
 
-                                <br>
-                                <div class="gap-10 text-center">
-                                    <button class="btn btn-form btn-lg" type="submit">Agregar</button>
-                                    <button type="button" 
-                                            class="btn btn-secondary btn-cancelar btn-lg" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#cancelarAdicion">Cancelar</button>
-                                </div>
-
-                        </form>  
+                    </form>  
                     <hr>
                 </div>
             </div>
@@ -184,34 +181,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-ace-popup" th:href="@{/producto/producto}">Aceptar</button>
-                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
+                            <a class="btn btn-secondary btn-cancelar btn-lg" 
+                               th:href="@{/ventas/cajas}">Cancelar</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <section th:fragment="cancelarEdicion">
-            <div class="modal fade" 
-                 id="cancelarEdicion" tabindex="-1" role="dialog" 
-                 aria-labelledby="cancelarEdicionTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <i class="fas fa-times-circle icon-custom"></i>
-                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la edición?</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p class="parrafos">Podrá editar los productos en cualquier momento</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-ace-popup" th:href="@{/producto/productos}">Aceptar</button>
-                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </body>
 </html>

@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -38,17 +39,19 @@ public class WebConfiguration {
                     .requestMatchers("/empleado/**",
                             "/homePage",
                             "/inicio",
-                                    "/empleado",
+                                    "/empleado**",
                                     "/producto/**","/ventas/**").hasRole("ADMIN")
                 )
                 .formLogin((form)->form
                     .loginPage("/")
-                        .defaultSuccessUrl("/ventas/cajas")
+                        .defaultSuccessUrl("/inicio")
                         .loginProcessingUrl("/")
                         .failureUrl("/register")
                     .permitAll()
                 )
-                .logout((logout)->logout
+                .logout(
+                        (logout)->logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
                 .permitAll());
         
         return http.build();
