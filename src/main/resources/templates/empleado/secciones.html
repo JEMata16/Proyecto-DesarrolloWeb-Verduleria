@@ -63,9 +63,9 @@
             <div class="aside">
                 <aside>
                     <ul>
-                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
-                        <li class="menu"><a class="menu-link"><i class="fas fa-shopping-cart"></i>Productos</a></li>
-                        <li class="menu"><a class="menu-link"><i class="fas fa-archive"></i>Cajas</a></li>
+                        <li class="menu seleccionado"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>Empleados</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>Productos</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>Cajas</a></li>
                     </ul>
                 </aside>
             </div>
@@ -120,7 +120,7 @@
                                 </div>
                             </div>
                             <div th:if="${empleados == null or empleados.empty}">
-                                <div class="titulo">
+                                <div class="titulo ">
                                     <h3>¡Lo sentimos! No existen empleados que mostrar</h3>
                                 </div>
                                 <p>Puede agregar un nuevo empleado presionando el botón de + que se le muestra en pantalla.</p>
@@ -191,11 +191,8 @@
                         <br>
                         <div class="gap-10 text-center">
                             <button class="btn btn-form btn-lg" type="submit">Agregar</button>
-                            <button type="button" 
-                                    id="cancelar"
-                                    class="btn btn-secondary btn-cancelar btn-lg"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#cancelarAdicion">Cancelar</button>
+                            <a class="btn btn-secondary btn-cancelar btn-lg" 
+                               th:href="@{/empleado/empleados}">Cancelar</a>
                         </div>
                     </form>  
                     <hr>
