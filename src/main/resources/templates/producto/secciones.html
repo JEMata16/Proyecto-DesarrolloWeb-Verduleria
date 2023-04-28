@@ -52,8 +52,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 </div>
                                                 <ul class="info-ventanas-productos" >
                                                     <li class="fs-1 fw-bold text-success">[[${producto.nombre}]]</li>
-                                                    <li>Cantidad Disp: [[${producto.cantidadDisponible}]] [[${producto.unidadMedida.nombre}]]</li>
-                                                    <li>Precio: ₡[[${producto.precio}]]</li>
+                                                    <li>[[#{productos.cantidad}]]: [[${producto.cantidadDisponible}]] [[${producto.unidadMedida.nombre}]]</li>
+                                                    <li>[[#{productos.precio}]] ₡[[${producto.precio}]]</li>
                                                 </ul>
                                                 <div class="editar-btn-producto"
                                                      style="margin: 0px auto; width: 50%; text-align: center;">
