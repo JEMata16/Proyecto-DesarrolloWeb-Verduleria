@@ -6,66 +6,14 @@
         <meta charset="UTF-8"/>
     </head>
     <body>
-        <section id="cancelarAdicion"
-                 class="modal fade" 
-                 tabindex="-1"
-                 aria-labelledby="exampleModalLabel"
-                 aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <i class="fas fa-times-circle icon-custom"></i>
-                        <h3 class="modal-title">¿Desea cancelar la adición?</h3>
-                    </div>
-                    <div class="modal-body">
-                        <p class="parrafos">Podrá agregar un nuevo empleado en cualquier momento</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a type="button" class="btn btn-ace-popup" th:href="@{/empleado/empleados}">Aceptar</a>
-                        <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <script>
-            $("#cancelarAdicion").modal({
-                modal: true,
-                buttons: {
-                    Ok: function () {
-                        $(this).modal("close");
-                    }
-                }
-            });
-        </script>
-        <section th:fragment="cancelarEdicion">
-            <div class="modal fade" 
-                 id="cancelarEdicion" tabindex="-1" role="dialog" 
-                 aria-labelledby="cancelarEdicionTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <i class="fas fa-times-circle icon-custom"></i>
-                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la edición?</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p class="parrafos">Podrá editar los empleados en cualquier momento</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-ace-popup" th:href="@{/empleado/empleados}">Aceptar</button>
-                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!-- Seccion para crear el menu de lado en empleados -->
         <section th:fragment="menuLado">
             <div class="aside">
                 <aside>
                     <ul>
-                        <li class="menu seleccionado"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>Empleados</a></li>
-                        <li class="menu"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>Productos</a></li>
-                        <li class="menu"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>Cajas</a></li>
+                        <li class="menu seleccionado"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>[[#{inicio.empleados}]</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>[[#{inicio.productos}]</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>[[#{inicio.cajas}]</a></li>
                     </ul>
                 </aside>
             </div>
@@ -76,7 +24,7 @@
             <div class="aside">
                 <aside>
                     <ul>
-                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-users"></i>Empleados</a></li>
+                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-users"></i>[[#{inicio.empleados}]</a></li>
                     </ul>
                 </aside>
             </div>
@@ -88,16 +36,16 @@
                     <div class="row">
                         <div class="col-md-11">
                             <div th:if="${empleados != null and !empleados.empty}">
-                                <div class="titulo"><h2>Lista de Empleados</h2></div>
+                                <div class="titulo"><h2>[[#{empleados.lista}]</h2></div>
                                 <br>
                                 <div class="card border border-white">
                                     <table class="table">
                                         <thead class="table-hcustom">
                                             <tr>
-                                                <th>Nombre</th>
-                                                <th>Apellidos</th>
-                                                <th>Contacto</th>
-                                                <th>Salario</th>
+                                                <th>[[#{empleados.nombre}]</th>
+                                                <th>[[#{empleados.apellidos}]</th>
+                                                <th>[[#{empleados.contacto}]</th>
+                                                <th>[[#{empleados.salario}]</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -121,9 +69,9 @@
                             </div>
                             <div th:if="${empleados == null or empleados.empty}">
                                 <div class="titulo ">
-                                    <h3>¡Lo sentimos! No existen empleados que mostrar</h3>
+                                    <h3>[[#{empleados.titulo}]</h3>
                                 </div>
-                                <p>Puede agregar un nuevo empleado presionando el botón de + que se le muestra en pantalla.</p>
+                                <p>[[#{empleados.mensaje}]</p>
                             </div>
                         </div>
                     </div>
@@ -139,7 +87,7 @@
         <section th:fragment="agregarEmpleado">
             <div class="contenido">
                 <div class="container">
-                    <h2 class="subtitulo">Agregar empleado</h2>
+                    <h2 class="subtitulo">[[#{empleados.agregar}]</h2>
                     <br>
                     <hr>
                     <form th:action="@{/empleado/guardar}"
@@ -150,7 +98,7 @@
                                name="idEmpleado" 
                                th:field="*{idEmpleado}"/>
                         <div>
-                            <label class="label-edit">Nombre</label><br>
+                            <label class="label-edit">[[#{empleados.nombre}]</label><br>
                             <input type="text" 
                                    name="nombre" 
                                    value="" 
@@ -160,7 +108,7 @@
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Apellidos</label><br>
+                            <label class="label-edit">[[#{empleados.apellidos}]</label><br>
                             <input type="text" 
                                    name="apellidos" 
                                    value="" 
@@ -170,7 +118,7 @@
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Contacto</label><br>
+                            <label class="label-edit">[[#{empleados.contacto}]</label><br>
                             <input type="text" 
                                    name="contacto" 
                                    value="" 
@@ -180,7 +128,7 @@
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Salario</label><br>
+                            <label class="label-edit">[[#{empleados.salario}]</label><br>
                             <input type="text" 
                                    name="salario" 
                                    value="" 
@@ -190,9 +138,9 @@
                         </div>
                         <br>
                         <div class="gap-10 text-center">
-                            <button class="btn btn-form btn-lg" type="submit">Agregar</button>
+                            <button class="btn btn-form btn-lg" type="submit">[[#{empleados.agregar}]</button>
                             <a class="btn btn-secondary btn-cancelar btn-lg" 
-                               th:href="@{/empleado/empleados}">Cancelar</a>
+                               th:href="@{/empleado/empleados}">[[#{empleados.cancelar}]</a>
                         </div>
                     </form>  
                     <hr>
@@ -204,7 +152,7 @@
             <section th:replace="~{empleado/secciones :: menuEdiciones}"/>
             <div class="contenido">
                 <div class="container">
-                    <h2 class="subtitulo">Editar empleado</h2>
+                    <h2 class="subtitulo">[[#{empleados.editar}]</h2>
                     <br>
                     <hr>
                     <form th:action="@{/empleado/guardar}"
@@ -215,7 +163,7 @@
                                name="idEmpleado" 
                                th:field="*{idEmpleado}"/>
                         <div>
-                            <label class="label-edit">Nombre</label><br>
+                            <label class="label-edit">[[#{empleados.nombre}]</label><br>
                             <input type="text" 
                                    name="nombre" 
                                    value="" 
@@ -224,7 +172,7 @@
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Apellidos</label><br>
+                            <label class="label-edit">[[#{empleados.apellidos}]</label><br>
                             <input type="text" 
                                    name="apellidos" 
                                    value="" 
@@ -233,7 +181,7 @@
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Contacto</label><br>
+                            <label class="label-edit">[[#{empleados.contacto}]</label><br>
                             <input type="text" 
                                    name="contacto" 
                                    value="" 
@@ -241,7 +189,7 @@
                                    size="15" />
                         </div>
                         <br>
-                        <label class="label-edit">Salario</label><br>
+                        <label class="label-edit">[[#{empleados.salario}]</label><br>
                         <input type="text" 
                                name="salario" 
                                value="" 
@@ -249,9 +197,9 @@
                                size="15" />
                         <br>
                         <div class="gap-10 text-center">
-                            <button class="btn btn-form btn-lg" type="submit">Finalizar edición</button>
+                            <button class="btn btn-form btn-lg" type="submit">[[#{empleados.finalizar}]</button>
                             <a class="btn btn-secondary btn-cancelar btn-lg" 
-                               th:href="@{/empleado/empleados}">Cancelar edición</a>
+                               th:href="@{/empleado/empleados}">[[#{empleados.canEdicion}]</a>
                         </div>
                     </form>  
                     <hr>

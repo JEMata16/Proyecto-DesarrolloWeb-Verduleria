@@ -16,9 +16,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="aside">
                 <aside>
                     <ul>
-                        <li class="menu"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>Empleados</a></li>
-                        <li class="menu seleccionado"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>Productos</a></li>
-                        <li class="menu"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>Cajas</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/empleado/empleados}"><i class="fas fa-users"></i>[[#{inicio.empleados}]</a></li>
+                        <li class="menu seleccionado"><a class="menu-link" th:href="@{/producto/productos}"><i class="fas fa-shopping-cart"></i>[[#{inicio.productos}]</a></li>
+                        <li class="menu"><a class="menu-link" th:href="@{/ventas/cajas}"><i class="fas fa-archive"></i>[[#{inicio.cajas}]</a></li>
                     </ul>
                 </aside>
             </div>
@@ -29,7 +29,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <div class="aside">
                 <aside>
                     <ul>
-                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-users"></i>Productos</a></li>
+                        <li class="menu seleccionado"><a class="menu-link"><i class="fas fa-users"></i>[[#{inicio.productos}]</a></li>
                     </ul>
                 </aside>
             </div>
@@ -58,7 +58,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 <div class="editar-btn-producto"
                                                      style="margin: 0px auto; width: 50%; text-align: center;">
                                                     <a th:href="@{/producto/editar/} + ${producto.idProducto}"
-                                                       class="btn btn-success"><i class="fas fa-pencil "></i> Editar</a>
+                                                       class="btn btn-success"><i class="fas fa-pencil "></i>[[#{productos.editar}]</a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -67,9 +67,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </div>
                             <div th:if="${productos == null or productos.empty}">
                                 <div class="titulo">
-                                    <h3>¡Lo sentimos! No existen productos que mostrar</h3>
+                                    <h3>[[#{productos.tituloVacio}]</h3>
                                 </div>
-                                <p>Puede agregar un nuevo producto presionando el botón de + que se le muestra en pantalla.</p>
+                                <p>[[#{productos.vacio}]</p>
 
                             </div>
                         </div>
@@ -86,7 +86,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <section th:fragment="agregarProducto">
             <div class="contenido">
                 <div class="container">
-                    <h2 class="subtitulo">Agregar producto</h2>
+                    <h2 class="subtitulo">[[#{productos.agregar}]</h2>
                     <br>
                     <hr>
                     <form th:action="@{/producto/guardar}"
@@ -97,7 +97,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                name="idProducto" 
                                th:field="*{idProducto}"/>
                         <div>
-                            <label class="label-edit">Nombre del producto</label><br>
+                            <label class="label-edit">[[#{productos.nombre}]</label><br>
                             <input type="text" 
                                    name="nombre" 
                                    value="" 
@@ -107,7 +107,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Cantidad Disp.</label><br>
+                            <label class="label-edit">[[#{productos.cantidad}]</label><br>
                             <div class="d-flex flex-row">
                                 <input type="text" 
                                        name="cantidadDisponible" 
@@ -118,17 +118,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                                 <div class="btn-group mr-2" role="group">
                                     <input type="radio" class="btn-check" name="unidadMedida.idUnidadMedida" value="1" id="btnradio1" autocomplete="off" checked>
-                                    <label class="btn btn-outline-success rounded-start " for="btnradio1">Cajas</label>
+                                    <label class="btn btn-outline-success rounded-start " for="btnradio1">[[#{productos.cajas}]</label>
 
                                     <input type="radio" class="btn-check" name="unidadMedida.idUnidadMedida" value="2" id="btnradio2" autocomplete="off">
-                                    <label class="btn btn-outline-success" for="btnradio2">Unid</label>
+                                    <label class="btn btn-outline-success" for="btnradio2">[[#{productos.unidades}]</label>
                                 </div>
 
                             </div>
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Precio</label><br>
+                            <label class="label-edit">[[#{productos.precio}]</label><br>
                             <input type="text" 
                                    name="precio" 
                                    value="" 
@@ -138,9 +138,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                         <br>
                         <div class="gap-10 text-center">
-                            <button class="btn btn-form btn-lg" type="submit">Agregar</button>
+                            <button class="btn btn-form btn-lg" type="submit">[[#{productos.btnAgregar}]</button>
                             <a class="btn btn-secondary btn-cancelar btn-lg" 
-                               th:href="@{/producto/productos}">Cancelar</a>
+                               th:href="@{/producto/productos}">[[#{productos.cancelar}]</a>
                         </div>
                     </form>  
                     <hr>
@@ -153,7 +153,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             <section th:replace="~{producto/secciones :: menuEdiciones}"/>
             <div class="contenido">
                 <div class="container">
-                    <h2 class="subtitulo">Editar producto</h2>
+                    <h2 class="subtitulo">[[#{productos.editarTitulo}]</h2>
                     <br>
                     <hr>
                     <form th:action="@{/producto/guardar}"
@@ -164,7 +164,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                name="idProducto" 
                                th:field="*{idProducto}"/>
                         <div>
-                            <label class="label-edit">Nombre del producto</label><br>
+                            <label class="label-edit">[[#{productos.nombre}]</label><br>
                             <input type="text" 
                                    name="nombre" 
                                    value="" 
@@ -174,7 +174,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Cantidad Disp.</label><br>
+                            <label class="label-edit">[[#{productos.cantidad}]</label><br>
                             <div class="d-flex flex-row">
                                 <input type="text" 
                                        name="cantidadDisponible" 
@@ -185,17 +185,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 
                                 <div class="btn-group mr-2" role="group">
                                     <input type="radio" class="btn-check" name="unidadMedida.idUnidadMedida" value="1" id="btnradio1" autocomplete="off" checked>
-                                    <label class="btn btn-outline-success rounded-start " for="btnradio1">Cajas</label>
+                                    <label class="btn btn-outline-success rounded-start " for="btnradio1">[[#{productos.cajas}]</label>
 
                                     <input type="radio" class="btn-check" name="unidadMedida.idUnidadMedida" value="2" id="btnradio2" autocomplete="off">
-                                    <label class="btn btn-outline-success" for="btnradio2">Unid</label>
+                                    <label class="btn btn-outline-success" for="btnradio2">[[#{productos.unidades}]</label>
                                 </div>
 
                             </div>
                         </div>
                         <br>
                         <div>
-                            <label class="label-edit">Precio</label><br>
+                            <label class="label-edit">[[#{productos.precio}]</label><br>
                             <input type="text" 
                                    name="precio" 
                                    value="" 
@@ -205,57 +205,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                         <br>
                         <div class="gap-10 text-center">
-                            <button class="btn btn-form btn-lg" type="submit">Finalizar edición</button>
+                            <button class="btn btn-form btn-lg" type="submit">[[#{productos.finEd}]</button>
                             <a class="btn btn-secondary btn-cancelar btn-lg" 
-                               th:href="@{/producto/productos}">Cancelar Edición</a>
+                               th:href="@{/producto/productos}">[[#{productos.canEd}]</a>
                         </div>
                     </form>  
                     <hr>
-                </div>
-            </div>
-        </section>
-
-        <section th:fragment="cancelarAdicion">
-            <div class="modal fade" 
-                 id="cancelarAdicion" tabindex="-1" role="dialog" 
-                 aria-labelledby="cancelarAdicionTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <i class="fas fa-times-circle icon-custom"></i>
-                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la adición?</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p class="parrafos">Podrá agregar un nuevo producto en cualquier momento</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-ace-popup" th:href="@{/producto/producto}">Aceptar</button>
-                            <a class="btn btn-secondary btn-cancelar btn-lg" 
-                               th:href="@{/producto/productos}">Cancelar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section th:fragment="cancelarEdicion">
-            <div class="modal fade" 
-                 id="cancelarEdicion" tabindex="-1" role="dialog" 
-                 aria-labelledby="cancelarEdicionTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <i class="fas fa-times-circle icon-custom"></i>
-                            <h3 class="modal-title" id="cancelarAdicionTitle">¿Desea cancelar la edición?</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p class="parrafos">Podrá editar los productos en cualquier momento</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-ace-popup" th:href="@{/producto/productos}">Aceptar</button>
-                            <button type="button" class="btn btn-can-popup" data-bs-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>

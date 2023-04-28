@@ -10,13 +10,13 @@
         <header th:replace="~{layout/plantilla :: header}"/>
         <section th:replace="~{layout/plantilla :: menuInicio}"/>
         <section class="contenido texto-inicio">
-            <h2 class="titulo"> ¡Bienvenido!</h2><br>
+            <h2 class="titulo">[[#{inicio.titulo}]]</h2><br>
             <article>
                 <p>
-                    Agradecemos su trabajo con nuestra tienda, en la sección a su izquierda podrá encontrar distintas opciones para administrar.
+                    [[#{inicio.mensaje1}]]
                 </p>
                 <p>
-                    Seleccione la opción que desea gestionar.
+                    [[#{inicio.mensaje2}]]
                 </p>
             </article>
         </body>
