@@ -35,6 +35,15 @@ public class Cajas {
         this.totalCompra = totalCompra;
     }
 
+    public Cajas(String nombreCliente, int cantidadComprada, double totalCompra, Long producto) {
+        this.nombreCliente = nombreCliente;
+        this.cantidadComprada = cantidadComprada;
+        this.totalCompra = totalCompra;
+        this.producto.setIdProducto(producto);
+    }
+    
+    
+
     public Long getId() {
         return idCajas;
     }

@@ -70,7 +70,6 @@ public class CajasController {
 
         System.out.println(cantidadPorCliente);
         model.addAttribute("cantidadPorCliente", cantidadPorCliente);
-        
 
         Map<String, Double> totalComprasPorCliente = new HashMap<>();
 
@@ -82,8 +81,8 @@ public class CajasController {
             totalComprasPorCliente.put(entry.getKey(), totalCompra);
         }
         System.out.println(totalComprasPorCliente);
-        
-        model.addAttribute("totalComprasPorCliente",totalComprasPorCliente);
+
+        model.addAttribute("totalComprasPorCliente", totalComprasPorCliente);
         model.addAttribute("totalCajas", carritoTotalVenta);
         return "/ventas/cajas";
 
@@ -91,35 +90,25 @@ public class CajasController {
 
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute("cajas") Cajas cajaObject) {
-        if (!facturasR.isEmpty()) {
-            System.out.println("1");
-            for (Cajas i : facturasR) {
-                Long idProducto = productoService.loadByNombre(cajaObject.getProducto().getNombre());
-                cajaObject.getProducto().setIdProducto(idProducto);
-            }
-            cajasService.addCajas(cajaObject);
-        } else {
-            System.out.println("2");
-            Long idProducto = productoService.loadByNombre(cajaObject.getProducto().getNombre());
-            cajaObject.getProducto().setIdProducto(idProducto);
-            cajasService.addCajas(cajaObject);
-        }
+        Long idProducto = productoService.loadByNombre(cajaObject.getProducto().getNombre());
+        cajaObject.getProducto().setIdProducto(idProducto);
+        cajaObject.setTotalCompra(cajaObject.getCantidadComprada() * cajaObject.getProducto().getPrecio());
+        cajasService.addCajas(cajaObject);
         return "redirect:/ventas/nuevo";
     }
 
     @PostMapping("/registrar")
     public String productoAlmacenado(@RequestParam("nombreCliente") String nombreCliente,
-                                 @RequestParam("productoNombre") String productoNombre,
-                                 @RequestParam("cantidadComprada") int cantidadComprada) {
+            @RequestParam("productoNombre") String productoNombre,
+            @RequestParam("cantidadComprada") int cantidadComprada) {
         Long idProducto = productoService.loadByNombre(productoNombre);
-        Cajas cajas = new Cajas(nombreCliente,cantidadComprada, 0, idProducto);
+        Cajas cajas = new Cajas(nombreCliente, cantidadComprada, 0, idProducto);
         System.out.println(cajas);
         return "redirect:/ventas/nuevo";
     }
-    
-    
+
     @GetMapping("/nuevo")
-    public String nuevoCajas(Cajas cajas){
+    public String nuevoCajas(Cajas cajas) {
         return "/ventas/agregar";
     }
 }

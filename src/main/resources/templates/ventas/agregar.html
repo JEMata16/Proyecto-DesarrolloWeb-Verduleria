@@ -37,7 +37,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 formulario.cantidadComprada.value = "";
 
                 $.ajax({
-                    type: 'GET',
+                    type: 'POST',
                     url: '/ventas/registrar',
                     data: {
                         "nombreCliente": nombreCliente,
@@ -45,7 +45,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         "cantidadComprada": cantidadComprada
                     },
                     success: function (formulario) {
-                        limpiarInputs($('#cajasForm'));
+                        limpiarInputs(formulario);
                     }
                 });
             }
